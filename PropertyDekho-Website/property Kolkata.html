@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Property Dekho</title>
+
+  <link rel="icon" href="logo.png" class="logo1" type="image/x-icon">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    .nav1 {
+      color: white;
+      height: 50px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+
+    .logo {
+      font-size: 35px;
+      font-weight: bold;
+      cursor: pointer;
+      color: black;
+      margin-right: 5px;
+      text-align: center;
+      margin-left: 100px;
+    }
+
+    nav ul {
+      list-style-type: none;
+      display: flex;
+    }
+
+    nav ul li {
+      margin-right: 20px;
+    }
+
+    #places {
+      border-radius: 20px;
+      background-color: red;
+      color: white;
+
+    }
+
+    #places:hover {
+      background-color: blue;
+    }
+
+    .choose {
+      padding-top: 13px;
+      color: black;
+      font-weight: bold;
+      font-size: 20px;
+      padding-right: 10px;
+    }
+
+
+    h1 {
+      color: #333;
+      margin: 0;
+    }
+
+    main {
+      margin: 20px;
+    }
+
+    .container,
+    .container2,
+    .container3 {
+      display: flex;
+      column-gap: 100px;
+      margin-left: 100px;
+    }
+
+    .image1 {
+      overflow: hidden;
+    }
+
+    .property-card h3 {
+      margin: 0;
+      color: #333;
+      text-transform: capitalize;
+      font-size: 40px;
+    }
+
+    .property-card p {
+      margin: 5px 0;
+    }
+
+    .card {
+      width: 150px;
+      height: 250px;
+      perspective: 800px;
+      margin-left: 10px;
+      padding: 10px;
+      margin-bottom: 50px;
+
+    }
+
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+
+
+    }
+
+    .lodha {
+      font-size: 25px;
+    }
+
+    .nav2 {
+      color: white;
+      height: 40px;
+      cursor: pointer;
+      position: sticky;
+      top: 0;
+      padding: 0px 0px 0px 100px;
+      z-index: 1000;
+      /* Add a high z-index to ensure it appears above other elements */
+    }
+
+    .sticky {
+      position: fixed;
+      top: 0;
+      width: 100%;
+    }
+
+
+    .flex {
+      display: flex;
+      padding-left: 20px;
+    }
+
+    footer {
+      background-color: black;
+      padding: 10px;
+      text-align: center;
+      font-size: 14px;
+      color: white;
+    }
+
+    .click1 {
+      width: 100px;
+      height: 20px;
+      background-color: red;
+      color: white;
+      padding: 2px;
+    }
+
+    .button {
+      appearance: none;
+      background-color: lightcoral;
+      border-radius: 40em;
+      border-style: none;
+      box-shadow: #ADCFFF 0 -12px 6px inset;
+      box-sizing: border-box;
+      color: #000000;
+      cursor: pointer;
+      display: inline-block;
+      font-family: -apple-system, sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -.24px;
+      margin: 0;
+      outline: none;
+      padding: 1rem 1.3rem;
+      quotes: auto;
+      text-align: center;
+      text-decoration: none;
+      transition: all .15s;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+
+    .button:hover {
+      background-color: #FFC229;
+      box-shadow: #FF6314 0 -6px 8px inset;
+      transform: scale(1.125);
+    }
+
+    .button:active {
+      transform: scale(1.025);
+    }
+
+    @media (min-width: 768px) {
+      .button {
+        font-size: 1rem;
+        padding: .75rem 2rem;
+      }
+    }
+
+    nav.primary-navigation {
+      margin: 0 auto;
+      display: block;
+      padding: 12px 0 0;
+      text-align: center;
+      font-size: 25px;
+      margin-left: 100px;
+    }
+
+    nav.primary-navigation1 {
+      margin: 0 auto;
+      display: block;
+      padding: 12px 0 0;
+      text-align: center;
+      font-size: 25px;
+      margin-left: 300px;
+    }
+
+    nav.primary-navigation ul li,
+    nav.primary-navigation1 ul li {
+      list-style: none;
+      margin: 0 auto;
+      display: inline-block;
+      padding: 0 30px;
+      position: relative;
+      text-decoration: none;
+      text-align: center;
+      font-family: arvo;
+    }
+
+    nav.primary-navigation li a,
+    nav.primary-navigation1 li a {
+      color: black;
+    }
+
+    nav.primary-navigation li a:hover,
+    nav.primary-navigation1 li a:hover {
+      color: #3ca0e7;
+    }
+
+    nav.primary-navigation li:hover,
+    nav.primary-navigation1 li:hover {
+      cursor: pointer;
+    }
+
+    nav.primary-navigation ul li ul,
+    nav.primary-navigation1 ul li ul {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      padding-left: 0;
+      left: 0;
+      display: none;
+      background: white;
+    }
+
+    nav.primary-navigation ul li:hover>ul,
+    nav.primary-navigation ul li ul:hover,
+    nav.primary-navigation1 ul li:hover>ul,
+    nav.primary-navigation1 ul li ul:hover {
+      visibility: visible;
+      opacity: 1;
+      display: block;
+      min-width: 250px;
+      text-align: left;
+      padding-top: 20px;
+      box-shadow: 0px 3px 5px -1px #ccc;
+    }
+
+    nav.primary-navigation ul li ul li,
+    nav.primary-navigation1 ul li ul li {
+      clear: both;
+      width: 100%;
+      text-align: left;
+      margin-bottom: 20px;
+      border-style: none;
+    }
+
+    nav.primary-navigation ul li ul li a:hover,
+    nav.primary-navigation1 ul li ul li a:hover {
+      padding-left: 10px;
+      border-left: 2px solid #3ca0e7;
+      transition: all 0.3s ease;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #3CA0E7;
+    }
+
+    ul li ul li a {
+      transition: all 0.5s ease;
+    }
+
+    .insta {
+      width: 80px;
+      height: 80px;
+      transition: transform 0.5s ease;
+    }
+
+    .insta:hover {
+      transform: rotate(360deg);
+    }
+
+    .facebook {
+      width: 100px;
+      margin-top: 10px;
+      transition: transform 0.5s ease;
+    }
+
+    .facebook:hover {
+      transform: rotate(360deg);
+    }
+
+    .linkedin {
+      width: 80px;
+      transition: transform 0.5s ease;
+    }
+
+    .linkedin:hover {
+      transform: rotate(360deg);
+    }
+
+    .youtube {
+      width: 80px;
+      transition: transform 0.5s ease;
+    }
+
+    .youtube:hover {
+      transform: rotate(360deg);
+    }
+
+    @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@700&display=swap");
+
+    :root {
+      /* Colors */
+      --brand-color: hsl(46, 100%, 50%);
+      --black: hsl(0, 0%, 0%);
+      --white: hsl(0, 0%, 100%);
+      /* Fonts */
+      --font-title: "Montserrat", sans-serif;
+      --font-text: "Lato", sans-serif;
+    }
+
+    /* RESET */
+
+    /* Box sizing rules */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* Remove default margin */
+    body,
+    h2,
+    p {
+      margin: 0;
+    }
+
+    /* GLOBAL STYLES */
+    body {
+      display: grid;
+      place-items: center;
+      height: 100vh;
+    }
+
+    h2 {
+      font-size: 2.25rem;
+      font-family: var(--font-title);
+      color: var(--white);
+      line-height: 1.1;
+    }
+
+    p {
+      font-family: var(--font-text);
+      font-size: 1rem;
+      line-height: 1.5;
+      color: var(--white);
+    }
+
+    .flow>*+* {
+      margin-top: var(--flow-space, 1em);
+    }
+
+    /* CARD COMPONENT */
+
+    .card {
+      display: grid;
+      place-items: center;
+      width: 80vw;
+      max-width: 21.875rem;
+      height: 28.125rem;
+      overflow: hidden;
+      border-radius: 0.625rem;
+      box-shadow: 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
+    }
+
+    .card>* {
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+    }
+
+    .card__background {
+      object-fit: cover;
+      max-width: 100%;
+      height: 100%;
+    }
+
+    .card__content {
+      --flow-space: 0.9375rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-self: flex-end;
+      height: 95%;
+      padding: 12% 1.25rem 1.875rem;
+      background: linear-gradient(180deg,
+          hsla(0, 0%, 0%, 0) 0%,
+          hsla(0, 0%, 0%, 0.3) 10%,
+          hsl(0, 0%, 0%) 100%);
+      font-size: 20px;
+      text-transform: capitalize;
+    }
+
+    .card__content--container {
+      --flow-space: 1.25rem;
+    }
+
+    .card__title {
+      position: relative;
+      width: fit-content;
+      width: -moz-fit-content;
+      /* Prefijo necesario para Firefox  */
+    }
+
+    .card__title::after {
+      content: "";
+      position: absolute;
+      height: 0.3125rem;
+      width: calc(100% + 1.25rem);
+      bottom: calc((1.25rem - 0.5rem) * -1);
+      left: -1.25rem;
+      background-color: var(--brand-color);
+    }
+
+    .card__button {
+      appearance: none;
+      background-color: lightcoral;
+      border-radius: 40em;
+      border-style: none;
+      box-shadow: #ADCFFF 0 -12px 6px inset;
+      box-sizing: border-box;
+      color: #000000;
+      cursor: pointer;
+      display: inline-block;
+      font-family: -apple-system, sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -.24px;
+      margin: 0;
+      outline: none;
+      padding: 1rem 1.3rem;
+      quotes: auto;
+      text-align: center;
+      text-decoration: none;
+      transition: all .15s;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      width: 10rem;
+      height: 4rem;
+      margin-top: 0.5rem;
+    }
+
+    .card__button:hover {
+      background-color: #FFC229;
+      box-shadow: #FF6314 0 -6px 8px inset;
+      transform: scale(1.125);
+    }
+
+    .card__button:active {
+      transform: scale(1.025);
+    }
+
+    .card__button:focus {
+      outline: 2px solid black;
+      outline-offset: -5px;
+    }
+
+    @media (any-hover: hover) and (any-pointer: fine) {
+      .card__content {
+        transform: translateY(62%);
+        transition: transform 500ms ease-out;
+        transition-delay: 500ms;
+      }
+
+      .card__title::after {
+        opacity: 0;
+        transform: scaleX(0);
+        transition: opacity 1000ms ease-in, transform 500ms ease-out;
+        transition-delay: 500ms;
+        transform-origin: right;
+      }
+
+      .card__background {
+        transition: transform 500ms ease-in;
+      }
+
+      .card__content--container> :not(.card__title),
+      .card__button {
+        opacity: 0;
+        transition: transform 500ms ease-out, opacity 500ms ease-out;
+      }
+
+      .card:hover,
+      .card:focus-within {
+        transform: scale(1.05);
+        transition: transform 500ms ease-in;
+      }
+
+      .card:hover .card__content,
+      .card:focus-within .card__content {
+        transform: translateY(0);
+        transition: transform 500ms ease-in;
+      }
+
+      .card:focus-within .card__content {
+        transition-duration: 0ms;
+      }
+
+      .card:hover .card__background,
+      .card:focus-within .card__background {
+        transform: scale(1.3);
+      }
+
+      .card:hover .card__content--container> :not(.card__title),
+      .card:hover .card__button,
+      .card:focus-within .card__content--container> :not(.card__title),
+      .card:focus-within .card__button {
+        opacity: 1;
+        transition: opacity 200ms ease-in;
+        transition-delay: 1000ms;
+      }
+
+      .card:hover .card__title::after,
+      .card:focus-within .card__title::after {
+        opacity: 1;
+        transform: scaleX(1);
+        transform-origin: left;
+        transition: opacity 200ms ease-in, transform 200ms ease-in;
+        transition-delay: 500ms;
+      }
+    }
+
+    .note {
+      color: black;
+    }
+
+    .logout-btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #ffffff;
+      background-color: #ff5733;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .logout-btn:hover {
+      background-color: #c13e1b;
+    }
+
+  </style>
+</head>
+
+<body>
+  <form>
+    <header>
+      <nav class="nav1 flex" style="justify-content: space-between; padding: 0 20px;">
+        <div class="logo" style="display: flex; align-items: center; gap: 10px; width: 300px;">
+          <img src="logo.png" alt="Logo" style="width: 50px; height: 50px; border-radius: 50%;">
+          <h1 style="margin: 0; white-space: nowrap;">PROPERTY DEKHO</h1>
+        </div>
+        <nav role="navigation" class="primary-navigation1">
+          <ul>
+            <li><a href="https://www.instagram.com/properties_dekho/" target="_blank"><img
+                  src="https://img.freepik.com/premium-vector/modern-badge-logo-instagram-icon_578229-124.jpg?w=360"
+                  alt="Instagram" class="insta"></a></li>
+            <li><a href="https://www.facebook.com/propertiesdekhoindia" target="_blank"><img
+                  src="https://1000logos.net/wp-content/uploads/2021/04/Facebook-logo.png" alt="Facebook"
+                  class="facebook"></a></li>
+            <li><a href="https://www.linkedin.com/company/propertiesdekho/" target="_blank"><img
+                  src="https://static.vecteezy.com/system/resources/previews/018/930/587/original/linkedin-logo-linkedin-icon-transparent-free-png.png"
+                  alt="Linkedin" class="linkedin"></a></li>
+            <li><a href="https://www.youtube.com/channel/UC30b30Vmjz_eiOzYcwQKkkw" target="_blank"><img
+                  src="https://img.freepik.com/premium-vector/red-youtube-logo-social-media-logo_197792-1803.jpg?w=2000"
+                  alt="Youtube" class="youtube"></a></li>
+          </ul>
+        </nav>
+      </nav>
+
+
+      <nav id="navbar" class="nav2 flex ">
+        <div class="center flex">
+          <nav>
+            <ul class="flex">
+              <li><button type="button" class="button"
+                  onclick="window.location.href='https://www.99acres.com/search/property/buy/kolkata?city=25&preference=S&area_unit=1&res_com=R&isPreLeased=N'">BUY</button>
+              </li>
+              <li><button type="button" class="button"
+                  onclick="window.location.href='https://www.99acres.com/search/property/rent/kolkata?city=25&preference=R&area_unit=1&res_com=R&isPreLeased=N'">RENT</button>
+              </li>
+              <li><button type="button" class="button"
+                  onclick="window.location.href='https://www.99acres.com/search/property/lease/commercial-all/kolkata?city=25&property_type=9%2C20%2C16%2C15%2C17%2C10%2C18%2C19%2C81&includeCoworking=true&preference=L&area_unit=1&res_com=C&isPreLeased=N'">LEASE/RENT
+                  OUT</button></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="right flex">
+          <nav role="navigation" class="primary-navigation">
+            <ul>
+              <li><a href="#">Kolkata &dtrif;</a>
+                <ul class="dropdown">
+                  <li><a href="property Kolkata.html">Kolkata</a>
+                  </li>
+                  <li><a href="property mumbai.html">Mumbai</a></li>
+                  <li><a href="property Delhi.html">Delhi</a></li>
+                  <li><a href="property pune.html">Pune</a>
+                  </li>
+                  
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </nav>
+
+      <main>
+        <h2 class="note">Welcome to our Property Marketplace</h2>
+
+        <p class="note">
+          <b>Find your dream property or sell your property with ease on our platform.
+            We connect buyers and sellers, making the process simple and efficient</b>.<br><br><br>
+        </p>
+
+
+
+        <div class="container">
+
+          <article class="card">
+            <img class="card__background" src="kolkata-pics/southwinds1.jpg"
+              alt="Southwinds property" width="1920"
+              height="2193" />
+            <div class="card__content | flow">
+              <div class="card__content--container | flow">
+                <h2 class="card__title">Southwinds</h2>
+                <p class="card__description">
+                <p><b>Location:</b> Kolkata</p>
+                <p><b>Price:</b><br><b>2 BHK:</b> ₹50,00,000<br><b>3 BHK:</b> ₹70,00,000<br><b>4 BHK</b> 1 Crore</p>
+                <p><b>Contact:</b> 9985645125</p>
+                </p>
+              </div>
+              <button class="card__button"
+                onclick="window.open('https://www.99acres.com/southwinds-garia-kolkata-south-npxid-r318917', '_blank');">Read
+                more</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <img class="card__background" src="kolkata-pics/orbit1.jpg"
+              alt="Orbit Lumiere property" width="1920"
+              height="2193" />
+            <div class="card__content | flow">
+              <div class="card__content--container | flow">
+                <h2 class="card__title">Orbit Lumiere</h2>
+                <p class="card__description">
+                <p><b>Location:</b> Kolkata</p>
+                <p><b>Price:</b><br><b>2 BHK:</b> ₹70,00,000<br><b>3 BHK:</b> 1.2 Crores<br><b>4 BHK</b> 1.5 Crores</p>
+                <p><b>Contact:</b> 9985645125</p>
+
+                </p>
+              </div>
+              <button class="card__button"
+                onclick="window.open('https://www.99acres.com/orbit-lumiere-bt-road-kolkata-north-npxid-r378244', '_blank');">Read
+                more</button>
+            </div>
+          </article>
+
+
+          <article class="card">
+            <img class="card__background" src="kolkata-pics/ascon1.jpg"
+              alt="Ascon property" width="1920"
+              height="2193" />
+            <div class="card__content | flow">
+              <div class="card__content--container | flow">
+                <h2 class="card__title">Ascon Era</h2>
+                <p class="card__description">
+                <p><b>Location:</b> Kolkata</p>
+                <p><b>Price:</b><br><b>2 BHK:</b> ₹50,00,000<br><b>3 BHK:</b> ₹70,00,000<br><b>4 BHK</b> ₹98,00,000</p>
+                <p><b>Contact:</b> 9985645125</p>
+                </p>
+              </div>
+              <button class="card__button"
+                onclick="window.open('https://www.99acres.com/ascon-era-chinar-park-kolkata-east-npxid-r278379', '_blank');">Read
+                more</button>
+            </div>
+          </article>
+
+
+        </div>
+
+        <div class="container2">
+          <article class="card">
+            <img class="card__background" src="kolkata-pics/dtc1.jpg"
+              alt="DTC Sojon property" width="1920"
+              height="2193" />
+            <div class="card__content | flow">
+              <div class="card__content--container | flow">
+                <h2 class="card__title">DTC Sojon</h2>
+                <p class="card__description">
+                <p><b>Location:</b> Kolkata</p>
+                <p><b>Price:</b><br><b>2 BHK:</b> ₹45,00,000<br><b>3 BHK:</b> ₹70,00,000<br></p>
+                <p><b>Contact:</b> 9985645125</p>
+                </p>
+              </div>
+              <button class="card__button"
+                onclick="window.open('https://www.99acres.com/dtc-sojon-joka-kolkata-south-npxid-r402643', '_blank');">Read
+                more</button>
+            </div>
+          </article>
+
+
+          <article class="card">
+            <img class="card__background" src="kolkata-pics/urbana1.jpg"
+              alt="Urbana property" width="1920"
+              height="2193" />
+            <div class="card__content | flow">
+              <div class="card__content--container | flow">
+                <h2 class="card__title">Urbana</h2>
+                <p class="card__description">
+                <p><b>Location:</b> Kolkata</p>
+                <p><b>Price:</b><br><b>3 BHK:</b> 3 Crores<br><b>4 BHK:</b> 7 Crores<br></p>
+                <p><b>Contact:</b> 9985645125</p>
+                </p>
+              </div>
+              <button class="card__button"
+                onclick="window.open('https://www.99acres.com/urbana-em-bypass-kolkata-south-npxid-r873', '_blank');">Read
+                more</button>
+            </div>
+          </article>
+
+
+          <article class="card">
+            <img class="card__background" src="kolkata-pics/joyville1.jpg"
+              alt="Joyville Heights Property width="1920"
+              height="2193" />
+            <div class="card__content | flow">
+              <div class="card__content--container | flow">
+                <h2 class="card__title">Joyville Heights</h2>
+                <p class="card__description">
+                <p><b>Location:</b> Kolkata</p>
+                <p><b>Price:</b><br><b>1 BHK:</b> ₹35,00,000<br><b>2 BHK:</b> ₹40,00,000<br><b>3 BHK</b> ₹55,00,000</p>
+                <p><b>Contact:</b> 9985645125</p>
+                </p>
+              </div>
+              <button class="card__button"
+                onclick="window.open('https://www.99acres.com/joyville-western-heights-howrah-kolkata-west-npxid-r262638', '_blank');">Read
+                more</button>
+            </div>
+          </article>
+        </div>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+      </main>
+
+
+
+      <script type="text/javascript">
+        function myFun() {
+          alert("Great properties are available!!!");
+        }
+
+      </script>
+      <script>
+        // JavaScript function for logout
+        function logout() {
+          // Show logout message
+          alert("You have been successfully logged out. Please login again to continue.");
+          
+          // Redirect to the login page
+          window.location.href = "Login form.html";
+        }
+      </script>
+
+      <script>
+        window.onscroll = function () { myFunction() };
+
+        var navbar = document.getElementById("navbar");
+        var sticky = navbar.offsetTop;
+
+        function myFunction() {
+          if (window.pageYOffset >= sticky) {
+            navbar.classList.add("sticky");
+          } else {
+            navbar.classList.remove("sticky");
+          }
+        }
+      </script>
+
+
+      <footer>
+        &copy; 2023 Property Buying and Selling. All rights reserved.
+      </footer>
+</body>
+
+</html>

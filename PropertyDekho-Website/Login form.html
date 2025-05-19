@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Dekho</title>
+
+    <link rel="icon" href="logo.png" type="image/x-icon">
+
+    <style>
+        *,
+        *:before,
+        *:after {
+            box-sizing: border-box
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Raleway', sans-serif;
+        }
+
+        .container1 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+
+            &:hover,
+            &:active {
+
+                .top,
+                .bottom {
+
+                    &:before,
+                    &:after {
+                        margin-left: 200px;
+                        transform-origin: -200px 50%;
+                        transition-delay: 0s;
+                    }
+                }
+
+                .center {
+                    opacity: 1;
+                    transition-delay: 0.2s;
+                }
+            }
+        }
+
+        .top,
+        .bottom {
+
+            &:before,
+            &:after {
+                content: '';
+                display: block;
+                position: absolute;
+                width: 200vmax;
+                height: 200vmax;
+                top: 50%;
+                left: 50%;
+                margin-top: -100vmax;
+                transform-origin: 0 50%;
+                transition: all 0.5s cubic-bezier(0.445, 0.05, 0, 1);
+                z-index: 10;
+                opacity: 0.65;
+                transition-delay: 0.2s;
+            }
+        }
+
+        .top {
+            &:before {
+                transform: rotate(45deg);
+                background: #e46569;
+            }
+
+            &:after {
+                transform: rotate(135deg);
+                background: #ecaf81;
+            }
+        }
+
+        .bottom {
+            &:before {
+                transform: rotate(-45deg);
+                background: #60b8d4;
+            }
+
+            &:after {
+                transform: rotate(-135deg);
+                background: #3745b5;
+            }
+        }
+
+        .center {
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.445, 0.05, 0, 1);
+            transition-delay: 0s;
+            color: #333;
+
+            input {
+                width: 100%;
+                padding: 15px;
+                margin: 5px;
+                border-radius: 1px;
+                border: 1px solid #ccc;
+                font-family: inherit;
+            }
+        }
+
+
+        #container {
+            width: 300px;
+            margin: 0 auto;
+            margin-bottom: 10px;
+            margin-top: 60px;
+        }
+
+        .tabs {
+            display: table-cell;
+            width: 34%;
+            background-color: rgba(11, 177, 224, 0.82);
+            padding: 10px;
+            float: left;
+            text-align: center;
+            vertical-align: middle;
+            border: 2px solid #ffffff;
+            border-bottom: 0px;
+            position: relative;
+            font-size: 1.3em;
+            color: #ffffff;
+            border-radius: 30px;
+            margin-left: 30px;
+            margin-bottom: 5px;
+        }
+
+        .tabs:hover,
+        p {
+            cursor: pointer;
+            background-color: darkblue;
+        }
+
+        #lt {
+            background-color: rgb(12, 132, 189);
+        }
+
+
+        #lt:hover {
+            background-color: darkblue;
+        }
+
+        #cont {
+            width: 100%;
+            height: 300px;
+            background-color: white;
+            border: 2px solid #ffffff;
+            border-radius: 30px;
+            margin-top: 10px;
+        }
+
+        input {
+            display: block;
+            width: 250px;
+            margin: 10px 13px;
+            padding: 10px;
+            font-size: 1.3em;
+            color: rgba(11, 177, 224, 0.82);
+            border: 3px solid black;
+        }
+
+        input[type="submit"] {
+            width: 272px;
+            color: #6e6e6e;
+        }
+
+        #clear {
+            clear: both;
+            margin-bottom: 10px;
+            margin-top: 100px;
+        }
+
+        .comm {
+            position: absolute;
+            visibility: hidden;
+
+        }
+
+        #login {
+            visibility: visible;
+        }
+
+        h3 {
+            display: table-cell;
+            vertical-align: middle;
+            padding: 10px 15px;
+            font-size: 1.5em;
+            color: black;
+        }
+
+        .signin {
+            text-align: center;
+        }
+
+        #forgot h3 {
+            display: block;
+            margin-top: 30px;
+            text-align: center;
+
+        }
+
+        .forgotp {
+            border-radius: 20px;
+            text-align: center;
+            width: 250px;
+            margin-left: 22.5px;
+            margin-top: 10px;
+        }
+
+        #se,
+        #sp,
+        #submit2 {
+            border-radius: 20px;
+            width: 270px;
+        }
+
+        #se:hover,
+        #sp:hover,
+        #submit2:hover {
+            background-color: darkblue;
+            color: white;
+            cursor: pointer;
+        }
+
+        #re,
+        #rp,
+        #rrp,
+        #submit3 {
+            border-radius: 20px;
+            width: 270px;
+        }
+
+        #submit3 {
+            background-color: darkblue;
+            color: white;
+            width: 240px;
+            margin-left: 28px;
+        }
+
+        #submit3:hover,
+        #re:hover,
+        #rrp:hover,
+        #rp:hover {
+            background-color: darkblue;
+            color: white;
+            cursor: pointer;
+        }
+
+        #fe,
+        #submit4 {
+            border-radius: 20px;
+            width: 270px;
+        }
+
+        #fe:hover,
+        #submit4:hover {
+            background-color: darkblue;
+            color: white;
+        }
+
+        #forgot div {
+            margin-top: 30px;
+        }
+
+        p {
+            padding: 10px 15px;
+            font-size: 1.3em;
+            color: #ffffff;
+        }
+
+        #footer {
+            width: 100px;
+            margin-bottom: 90xp;
+            text-align: center;
+            color: rgba(9, 118, 155, 0.91);
+            font-size: 80px;
+            margin-left: 100px;
+
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="container1" onclick="onclick">
+        <div class="top"></div>
+        <div class="bottom"></div>
+        <div class="center">
+
+
+            <div id="container">
+                <div id="tabs">
+                    <p id="lt" class="tabs" onclick="loginTabFun()">Log in</p>
+                    <p id="rt" class="tabs" onclick="regTabFun()">Register</p>
+
+                    <div id="clear"></div>
+                </div>
+
+                <div id="cont">
+                    <div id="login" class="comm">
+                        <h3>Sign in</h3>
+
+                        <input id="se" type="email" placeholder="Email" required />
+                        <input id="sp" type="password" placeholder="Password" required />
+                        <input type="submit" onclick="login()" id="submit2" value="Submit" />
+
+                        <p onclick="forTabFun()" class="forgotp">Forget Password?</p>
+                    </div>
+                    <div id="register" class="comm">
+                        <h3>Register</h3>
+
+                        <input id="re" type="email" placeholder="Email" required />
+                        <input id="rp" type="password" placeholder="Password" required />
+                        <input id="rrp" type="password" placeholder="Re write Password" required />
+                        <input type="submit" onclick="register()" id="submit3" value="Submit" />
+
+                    </div>
+                    <div id="forgot" class="comm">
+                        <h3>Forgot Password</h3>
+                        <div>
+                            <input id="fe" type="email" placeholder="Email" required />
+                            <input type="submit" onclick="forgot()" id="submit4" value="Submit" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>&nbsp;</h2>
+        </div>
+    </div>
+
+
+
+    <script>
+        var emailArray = [];
+        var passwordArray = [];
+
+        var loginBox = document.getElementById("login");
+        var regBox = document.getElementById("register");
+        var forgetBox = document.getElementById("forgot");
+
+        var loginTab = document.getElementById("lt");
+        var regTab = document.getElementById("rt");
+
+        function regTabFun() {
+            event.preventDefault();
+
+            regBox.style.visibility = "visible";
+            loginBox.style.visibility = "hidden";
+            forgetBox.style.visibility = "hidden";
+
+            regTab.style.backgroundColor = "rgb(12, 132, 189)";
+            loginTab.style.backgroundColor = "rgba(11, 177, 224, 0.82)";
+        }
+        function loginTabFun() {
+            event.preventDefault();
+
+            regBox.style.visibility = "hidden";
+            loginBox.style.visibility = "visible";
+            forgetBox.style.visibility = "hidden";
+
+            loginTab.style.backgroundColor = "rgb(12, 132, 189)";
+            regTab.style.backgroundColor = "rgba(11, 177, 224, 0.82)";
+        }
+        function forTabFun() {
+            event.preventDefault();
+
+            regBox.style.visibility = "hidden";
+            loginBox.style.visibility = "hidden";
+            forgetBox.style.visibility = "visible";
+
+            regTab.style.backgroundColor = "rgba(11, 177, 224, 0.82)";
+            loginTab.style.backgroundColor = "rgba(11, 177, 224, 0.82)";
+
+        }
+
+
+        function register() {
+            event.preventDefault();
+
+            var email = document.getElementById("re").value;
+            var password = document.getElementById("rp").value;
+            var passwordRetype = document.getElementById("rrp").value;
+
+            if (email == "") {
+                alert("Email required.");
+                return;
+            }
+            else if (password == "") {
+                alert("Password required.");
+                return;
+            }
+            else if (passwordRetype == "") {
+                alert("Password required.");
+                return;
+            }
+            else if (password != passwordRetype) {
+                alert("Password don't match retype your Password.");
+                return;
+            }
+            else if (emailArray.indexOf(email) == -1) {
+                emailArray.push(email);
+                passwordArray.push(password);
+
+                alert(email + "  Thanks for registration. \nTry to login Now");
+
+                document.getElementById("re").value = "";
+                document.getElementById("rp").value = "";
+                document.getElementById("rrp").value = "";
+            }
+            else {
+                alert(email + " is already register.");
+                return;
+            }
+        }
+        function login() {
+            event.preventDefault();
+
+            var email = document.getElementById("se").value;
+            var password = document.getElementById("sp").value;
+
+            var i = emailArray.indexOf(email);
+
+            if (emailArray.indexOf(email) == -1) {
+                if (email == "") {
+                    alert("Email required.");
+                    return;
+                }
+                alert("Email does not exist.");
+                return;
+            }
+            else if (passwordArray[i] != password) {
+                if (password == "") {
+                    alert("Password required.");
+                    return;
+                }
+                alert("Password does not match.");
+                return;
+            }
+            else {
+
+                window.location.href = "Property Delhi.html";
+                alert("Welcome to the official page of Property Dekho!");
+
+                document.getElementById("se").value = "";
+                document.getElementById("sp").value = "";
+                return;
+            }
+
+        }
+        function forgot() {
+            event.preventDefault();
+
+            var email = document.getElementById("fe").value;
+
+            if (emailArray.indexOf(email) == -1) {
+                if (email == "") {
+                    alert("Email required.");
+                    return;
+                }
+                alert("Email does not exist.");
+                return;
+            }
+
+            alert("email is send to your email check it in 24hr. \n Thanks");
+            document.getElementById("fe").value = "";
+        }
+    </script>
+</body>
+
+</html>
